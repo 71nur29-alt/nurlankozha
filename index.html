@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FixHome — ремонт электроники на дому</title>
+<meta name="description" content="Ремонт телефонов, ноутбуков и другой электроники на дому. Диагностика, пайка, замена комплектующих и обслуживание.">
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#151a24;--muted:#687386;--blue:#2257d6;--dark:#10182a;--green:#18a673;--line:#e3e8f1;--shadow:0 18px 45px rgba(21,35,65,.10)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.55}
+a{text-decoration:none;color:inherit}.container{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:11px;font-weight:900}.logo{width:43px;height:43px;border-radius:13px;background:linear-gradient(135deg,var(--blue),#54a1ff);color:#fff;display:grid;place-items:center;font-size:22px;box-shadow:0 8px 22px #2257d638}
+nav{display:flex;gap:22px;font-size:14px;color:#4c5870}nav a:hover{color:var(--blue)}
+.btn{border:0;border-radius:12px;padding:12px 18px;background:var(--blue);color:white;font-weight:800;cursor:pointer;display:inline-flex;justify-content:center;align-items:center;box-shadow:0 8px 20px #2257d632}.btn:hover{background:#1747bb}.btn.light{background:#fff;color:var(--blue);border:1px solid #cbd7ed;box-shadow:none}
+.hero{padding:78px 0 62px;background:radial-gradient(circle at 80% 10%,#dce9ff,transparent 34%),linear-gradient(#fff,#f5f7fb)}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:55px;align-items:center}.label{display:inline-block;background:#eaf1ff;color:var(--blue);font-weight:800;font-size:13px;padding:7px 11px;border-radius:999px}
+h1{font-size:clamp(40px,5.3vw,67px);line-height:1.03;margin:17px 0}.hero p{font-size:18px;color:var(--muted);max-width:650px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:27px}
+.device{background:var(--dark);border-radius:28px;padding:24px;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}.device:after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;background:#2257d6;right:-60px;top:-60px;opacity:.3}.device h3{position:relative;z-index:1}.device-row{position:relative;z-index:1;display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid #ffffff20}.device-row:last-child{border:0}.ico{width:40px;height:40px;border-radius:11px;background:#ffffff12;display:grid;place-items:center;flex:none}.device small{color:#c2ccdd}
+section{padding:75px 0}.head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:29px}.head h2{font-size:35px;margin:5px 0}.head p{color:var(--muted);max-width:650px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:23px;box-shadow:0 5px 18px #182c5008;transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.card .ico{background:#edf3ff;color:var(--blue);font-size:20px}.card h3{margin:13px 0 7px}.card p{color:var(--muted);margin:0}
+.price{font-size:27px;font-weight:900;margin:15px 0}.price small{font-size:13px;color:var(--muted);font-weight:500}.list{padding:0;margin:0;list-style:none;color:#556177}.list li{padding:6px 0}.list li:before{content:"✓";color:var(--green);font-weight:900;margin-right:8px}
+.dark{background:var(--dark);color:#fff}.dark .head p{color:#aebbd0}.dark .card{background:#172139;border-color:#ffffff12;color:#fff}.dark .card p,.dark .list{color:#b9c5d8}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.step{background:#fff;border:1px solid var(--line);padding:21px;border-radius:16px}.number{color:var(--blue);font-weight:900;font-size:13px}.step h3{margin-bottom:5px}.step p{color:var(--muted);margin:0}
+.contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:25px}.contact-info{background:var(--dark);color:#fff;border-radius:22px;padding:30px}.contact-info p{color:#b8c4d8}.contact-item{padding:14px 0;border-bottom:1px solid #ffffff18}.form{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:var(--shadow)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}input,select,textarea{width:100%;padding:13px 14px;border:1px solid #d6deeb;border-radius:11px;font:inherit;background:#fff}textarea{min-height:125px;resize:vertical}.form form{display:grid;gap:13px}
+footer{background:#0b1322;color:#d3dceb;padding:32px 0}.footer{display:flex;justify-content:space-between;gap:20px}.footer small{color:#93a2ba}
+.toast{position:fixed;right:20px;bottom:20px;background:#0f1a2d;color:#fff;padding:14px 17px;border-radius:12px;display:none;box-shadow:var(--shadow)}
+@media(max-width:850px){nav{display:none}.hero-grid,.grid,.contact,.steps{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.head{display:block}.hero{padding-top:50px}.footer{display:block}.footer small{display:block;margin-top:10px}}
+</style>
+</head>
+<body>
+<header>
+<div class="container nav">
+<a class="brand" href="#top"><span class="logo">⚙</span><span>FIXHOME<br><small>РЕМОНТ ЭЛЕКТРОНИКИ</small></span></a>
+<nav><a href="#services">Услуги</a><a href="#prices">Цены</a><a href="#how">Как работаем</a><a href="#contact">Контакты</a></nav>
+<a class="btn" href="#contact">Заказать ремонт</a>
+</div>
+</header>
+
+<main id="top">
+<section class="hero">
+<div class="container hero-grid">
+<div>
+<span class="label">Домашняя мастерская • Быстро • Честно</span>
+<h1>Ремонт электроники без лишних хлопот</h1>
+<p>Телефоны, ноутбуки, компьютеры и мелкая электроника. Диагностика, замена комплектующих, пайка и обслуживание — с согласованием цены до ремонта.</p>
+<div class="actions"><a class="btn" href="#contact">Получить консультацию</a><a class="btn light" href="#prices">Посмотреть цены</a></div>
+</div>
+<div class="device">
+<h3>Что можем отремонтировать</h3>
+<div class="device-row"><span class="ico">📱</span><div><b>Смартфоны</b><br><small>Экран, аккумулятор, разъём, программные проблемы</small></div></div>
+<div class="device-row"><span class="ico">💻</span><div><b>Ноутбуки</b><br><small>Чистка, перегрев, SSD, Windows, питание</small></div></div>
+<div class="device-row"><span class="ico">🖥️</span><div><b>Компьютеры</b><br><small>Диагностика, сборка, обслуживание и ремонт</small></div></div>
+<div class="device-row"><span class="ico">🔧</span><div><b>Платы и электроника</b><br><small>Диагностика, пайка и восстановление соединений</small></div></div>
+</div>
+</div>
+</section>
+
+<section id="services">
+<div class="container">
+<div class="head"><div><span class="label">Наши услуги</span><h2>Решаем типичные проблемы</h2></div><p>Начните с диагностики — после проверки техники вы получаете понятное объяснение проблемы и стоимость ремонта.</p></div>
+<div class="grid">
+<article class="card"><span class="ico">📱</span><h3>Ремонт телефонов</h3><p>Замена аккумуляторов, дисплеев, разъёмов и других компонентов.</p></article>
+<article class="card"><span class="ico">💻</span><h3>Ремонт ноутбуков</h3><p>Чистка от пыли, перегрев, замена термопасты, SSD и диагностика.</p></article>
+<article class="card"><span class="ico">⚡</span><h3>Ремонт питания</h3><p>Поиск неисправностей цепей питания и разъёмов, где ремонт технически возможен.</p></article>
+<article class="card"><span class="ico">🧹</span><h3>Профилактика</h3><p>Чистка системы охлаждения и обслуживание техники для стабильной работы.</p></article>
+<article class="card"><span class="ico">🖥️</span><h3>Настройка ПК</h3><p>Установка и настройка ПО, перенос данных и базовая оптимизация.</p></article>
+<article class="card"><span class="ico">🔬</span><h3>Диагностика</h3><p>Определяем причину неисправности перед покупкой запчастей и ремонтом.</p></article>
+</div>
+</div>
+</section>
+
+<section id="prices" class="dark">
+<div class="container">
+<div class="head"><div><span class="label">Ориентировочные цены</span><h2>Прозрачная стоимость</h2></div><p>Финальная цена зависит от модели, неисправности и стоимости запчастей. Перед ремонтом согласовываем стоимость.</p></div>
+<div class="grid">
+<div class="card"><h3>Диагностика</h3><div class="price">от 3 000 ₸</div><ul class="list"><li>Первичная проверка</li><li>Определение неисправности</li><li>Расчёт ремонта</li></ul></div>
+<div class="card"><h3>Обслуживание ноутбука</h3><div class="price">от 7 000 ₸</div><ul class="list"><li>Разборка и чистка</li><li>Замена термопасты</li><li>Проверка охлаждения</li></ul></div>
+<div class="card"><h3>Пайка и ремонт платы</h3><div class="price">от 8 000 ₸</div><ul class="list"><li>Диагностика платы</li><li>Пайка соединений</li><li>Стоимость после осмотра</li></ul></div>
+</div>
+</div>
+</section>
+
+<section id="how">
+<div class="container">
+<div class="head"><div><span class="label">Простой процесс</span><h2>Как мы работаем</h2></div></div>
+<div class="steps">
+<div class="step"><span class="number">01 — ЗАЯВКА</span><h3>Опишите проблему</h3><p>Позвоните или оставьте заявку через сайт.</p></div>
+<div class="step"><span class="number">02 — ДИАГНОСТИКА</span><h3>Проверяем технику</h3><p>Определяем причину неисправности.</p></div>
+<div class="step"><span class="number">03 — СОГЛАСОВАНИЕ</span><h3>Называем цену</h3><p>Согласовываем стоимость и необходимые запчасти.</p></div>
+<div class="step"><span class="number">04 — РЕМОНТ</span><h3>Возвращаем исправную технику</h3><p>Проверяем результат и выдаём технику клиенту.</p></div>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+<div class="head"><div><span class="label">Связаться</span><h2>Закажите диагностику</h2></div><p>Заполните форму — в рабочей версии её можно подключить к WhatsApp, Telegram, электронной почте или CRM.</p></div>
+<div class="contact">
+<div class="contact-info">
+<h3>FIXHOME</h3><p>Домашняя мастерская по ремонту электроники.</p>
+<div class="contact-item">📞 <b>Телефон</b><br><span>+7 (___) ___-__-__</span></div>
+<div class="contact-item">💬 <b>WhatsApp</b><br><span>Написать мастеру</span></div>
+<div class="contact-item">📍 <b>Район работы</b><br><span>Ваш город</span></div>
+<div class="contact-item">🕒 <b>График</b><br><span>Ежедневно, 09:00–20:00</span></div>
+</div>
+<div class="form">
+<form id="form">
+<div class="form-grid"><input id="name" required placeholder="Ваше имя"><input id="phone" required placeholder="Телефон"></div>
+<select id="type"><option>Телефон</option><option>Ноутбук</option><option>Компьютер</option><option>Плата / электроника</option><option>Другое</option></select>
+<textarea id="msg" required placeholder="Опишите неисправность"></textarea>
+<button class="btn" type="submit">Отправить заявку</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer><div class="container footer"><div><b>FIXHOME — РЕМОНТ ЭЛЕКТРОНИКИ</b><br><small>Домашняя мастерская. Диагностика и ремонт.</small></div><small>© 2026. Замените контактные данные и цены на свои перед публикацией.</small></div></footer>
+<div class="toast" id="toast">Заявка принята. Спасибо!</div>
+<script>
+document.getElementById('form').addEventListener('submit',function(e){
+ e.preventDefault();
+ const t=document.getElementById('toast');t.style.display='block';
+ setTimeout(()=>t.style.display='none',3000);this.reset();
+});
+</script>
+</body>
+</html>
